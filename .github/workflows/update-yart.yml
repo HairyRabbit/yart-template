@@ -3,7 +3,7 @@ name: update-yart
 on: 
   schedule:
     - cron: '30 2'
-    
+
   workflow_dispatch:
 
 jobs:
@@ -13,43 +13,43 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - run: |
-git config user.name github-bot
-git config user.email <>
-npm i -g latest-version-cli
+        git config user.name github-bot
+        git config user.email <>
+        npm i -g latest-version-cli
 
-SHOULD_PUSH=0
+        SHOULD_PUSH=0
 
-function update {
-  local NAME=$1
-  local CURRENT_VERSION=`npm view $NAME version`
-  local TARGET_VERSION=`npx latest-version-cli $NAME`
+        function update {
+          local NAME=$1
+          local CURRENT_VERSION=`npm view $NAME version`
+          local TARGET_VERSION=`npx latest-version-cli $NAME`
 
-  echo "package: $NAME" 
-  echo "current version: $CURRENT_VERSION"
-  echo "target version: $TARGET_VERSION"
+          echo "package: $NAME" 
+          echo "current version: $CURRENT_VERSION"
+          echo "target version: $TARGET_VERSION"
 
-  if [[ $CURRENT_VERSION == $TARGET_VERSION ]]; then
-    echo "$NAME has same version, no need to update"
-    return
-  else
-    node -e "
-    const fs = require('fs')
-    const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
-    console.log(pkg)
-    pkg.dependencies[$NAME] = $TARGET_VERSION
-    fs.writeFileSync('./package.json', JSON.stringify(pkg, undefined, 2), 'utf-8')
-    "
-    
-    git add .
-    git commit -m "note:update $NAME version from $CURRENT_VERSION to $TARGET_VERSION"
-    SHOULD_PUSH=1
-  fi
-}
+          if [[ $CURRENT_VERSION == $TARGET_VERSION ]]; then
+            echo "$NAME has same version, no need to update"
+            return
+          else
+            node -e "
+            const fs = require('fs')
+            const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
+            console.log(pkg)
+            pkg.dependencies[$NAME] = $TARGET_VERSION
+            fs.writeFileSync('./package.json', JSON.stringify(pkg, undefined, 2), 'utf-8')
+            "
+            
+            git add .
+            git commit -m "note:update $NAME version from $CURRENT_VERSION to $TARGET_VERSION"
+            SHOULD_PUSH=1
+          fi
+        }
 
-update yart-cli
-update yart-dev-server
+        update yart-cli
+        update yart-dev-server
 
-if [[ $SHOULD_PUSH == 1 ]]; then
-  yarn
-  git push origin master
-fi
+        if [[ $SHOULD_PUSH == 1 ]]; then
+          yarn
+          git push origin master
+        fi

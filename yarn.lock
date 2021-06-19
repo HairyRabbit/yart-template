@@ -1826,6 +1826,38 @@ typescript@^4.3.2:
   languageName: node
   linkType: hard
 
+"yart-dev-server@npm:^0.0.2-rc.4":
+  version: 0.0.2
+  resolution: "yart-dev-server@npm:0.0.2"
+  dependencies:
+    "@rollup/plugin-commonjs": ^18.1.0
+    "@rollup/plugin-json": ^4.1.0
+    "@rollup/plugin-node-resolve": ^13.0.0
+    "@rollup/plugin-replace": ^2.4.2
+    chalk: ^4.1.1
+    chokidar: ^3.5.1
+    cjs-module-lexer: ^1.2.1
+    debug: ^4.3.1
+    glob: ^7.1.6
+    memfs: ^3.2.2
+    mime: ^2.5.2
+    portfinder: ^1.0.28
+    postcss: ^8.2.14
+    postcss-modules: ^4.0.0
+    react-refresh-typescript: ^2.0.0
+    rollup: ^2.47.0
+    sass: ^1.32.12
+    selfsigned: ^1.10.8
+    tslib: ^2.2.0
+    ws: ^7.4.5
+  peerDependencies:
+    react: "*"
+    react-dom: "*"
+    typescript: ^4.1
+  checksum: 49e22f009f9aafe56cafdf44ec382641757ef09e6ac72ad69a0fe1f793289dbffc4114acd7ff950e60cb04f1f770e280908eb3619750b64d9d6d6dcb5de4b55a
+  languageName: node
+  linkType: hard
+
 "yart-template@workspace:.":
   version: 0.0.0-use.local
   resolution: "yart-template@workspace:."
@@ -1837,5 +1869,6 @@ typescript@^4.3.2:
     tslib: ^2.2.0
     typescript: ^4.3.2
     yart-cli: ^0.0.1-rc.2
+    yart-dev-server: ^0.0.2-rc.4
   languageName: unknown
   linkType: soft

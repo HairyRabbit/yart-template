@@ -15,7 +15,7 @@ jobs:
       - name: update
         run: |
           git config user.name github-bot
-          git config user.email <>
+          git config user.email "<>"
           npm i -g latest-version-cli
 
           SHOULD_PUSH=0

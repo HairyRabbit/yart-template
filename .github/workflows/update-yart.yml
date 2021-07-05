@@ -36,6 +36,9 @@ jobs:
           update yart-dev-server
 
           rm _v.json
-
+          
           yarn
+
+          git add .
+          git commit -m "note:update version"
           git push origin master

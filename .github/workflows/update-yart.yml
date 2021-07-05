@@ -25,8 +25,7 @@ jobs:
             const fs = require('fs')
             const version = JSON.parse(fs.readFileSync('./_v.json', 'utf-8'))
             const dep = version['$NAME']
-            console.log(version, dep, '$NAME')
-            if(dep.current !== dep.latest) { 
+            if(dep && dep.current !== dep.latest) { 
             const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
             pkg.dependencies['$NAME'] = '$TARGET_VERSION'
             fs.writeFileSync('./package.json', JSON.stringify(pkg, undefined, 2), 'utf-8')

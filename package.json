@@ -4,19 +4,18 @@
   "version": "0.0.1",
   "description": "Template for yart application",
   "scripts": {
-    "start": "yart serve"
+    "start": "yart serve ."
   },
   "devDependencies": {
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
     "typescript": "^4.3.2",
-    "yart-cli": "^0.0.1-rc.2",
-    "yart-dev-server": "^0.0.2-rc.4"
+    "yart-cli": "^0.0.4",
+    "yart-dev-server": "^0.0.4"
   },
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "tslib": "^2.2.0",
-    "yart-cli": ""
+    "tslib": "^2.2.0"
   }
 }

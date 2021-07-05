@@ -27,7 +27,7 @@ jobs:
             const dep = version['$NAME']
             if(dep && dep.current !== dep.latest) { 
             const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
-            pkg.dependencies['$NAME'] = '$TARGET_VERSION'
+            pkg.devDependencies['$NAME'] = dep.latest
             fs.writeFileSync('./package.json', JSON.stringify(pkg, undefined, 2), 'utf-8')
             }
             "

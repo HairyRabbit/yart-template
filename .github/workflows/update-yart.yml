@@ -21,8 +21,8 @@ jobs:
 
           function update {
             local NAME=$1
-            local CURRENT_VERSION=`npm view $NAME version`
-            local TARGET_VERSION=`npx latest-version-cli $NAME`
+            local CURRENT_VERSION=`node -p "require('$NAME/package.json').version"`
+            local TARGET_VERSION=`npm view $NAME version`
 
             echo "package: $NAME" 
             echo "current version: $CURRENT_VERSION"

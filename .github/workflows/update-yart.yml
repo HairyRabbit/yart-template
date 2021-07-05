@@ -17,8 +17,6 @@ jobs:
           git config user.name github-bot
           git config user.email "<>"
 
-          # SHOULD_PUSH=0
-
           npm outdated --json > _v.json
 
           function update {
@@ -32,29 +30,6 @@ jobs:
             pkg.dependencies['$NAME'] = '$TARGET_VERSION'
             fs.writeFileSync('./package.json', JSON.stringify(pkg, undefined, 2), 'utf-8')
             "
-
-            # local CURRENT_VERSION=`node -p "require('$NAME/package.json').version"`
-            # local TARGET_VERSION=`npm view $NAME version`
-
-            # echo "package: $NAME" 
-            # echo "current version: $CURRENT_VERSION"
-            # echo "target version: $TARGET_VERSION"
-
-            # if [[ $CURRENT_VERSION == $TARGET_VERSION ]]; then
-            #   echo "$NAME has same version, no need to update"
-            #   return
-            # else
-            #   node -e "
-            #   const fs = require('fs')
-            #   const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
-            #   pkg.dependencies['$NAME'] = '$TARGET_VERSION'
-            #   fs.writeFileSync('./package.json', JSON.stringify(pkg, undefined, 2), 'utf-8')
-            #   "
-              
-            #   git add .
-            #   git commit -m "note:update $NAME version from $CURRENT_VERSION to $TARGET_VERSION"
-            #   SHOULD_PUSH=1
-            # fi
           }
 
           update yart-cli
@@ -62,7 +37,5 @@ jobs:
 
           rm _v.json
 
-          # if [[ $SHOULD_PUSH == 1 ]]; then
           yarn
           git push origin master
-          # fi

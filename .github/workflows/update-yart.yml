@@ -17,7 +17,7 @@ jobs:
           git config user.name github-bot
           git config user.email "<>"
 
-          npm outdated --json > _v.json
+          npm outdated --json > _v.json || true
 
           function update {
             local NAME=$1
@@ -41,5 +41,5 @@ jobs:
           yarn
 
           git add .
-          git commit -m "note:update version"
-          git push origin master
+          git commit -m "note:update version" || true
+          git push origin master || true
